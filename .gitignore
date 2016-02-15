@@ -1,1 +1,6 @@
 /.idea/
+*.p
+*.pdf
+/_tmp/
+*.data
+*.pyc
