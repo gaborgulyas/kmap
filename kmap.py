@@ -112,8 +112,7 @@ def plot_kmap(data, data_raw=True, data_label = "", filename = "", plot_annotati
 		x = [x_ for x_ in sorted(xy.keys())]
 		y = [xy[ass] for ass in sorted(xy.keys())]
 		z = [xy[ass] for ass in sorted(xy.keys())]
-		w = [float(xy[ass])/data_length for ass in sorted(xy.keys())]
-
+		w = [float(ass*xy[ass])/data_length for ass in sorted(xy.keys())]
 
 	if plot_heatmap or plot_contour:
 		# Emphasize heavy spots for the contour (but visualize only one for each)
@@ -215,7 +214,6 @@ def plot_kmap(data, data_raw=True, data_label = "", filename = "", plot_annotati
 
 			plt.text(c[0]+annotation_shift_vector[0], c[1]+annotation_shift_vector[1], "%.2f %%" % (weights[gix] * 100))
 
-
 	# Add annotations for minimum and maximum anonymity sets
 	elif isinstance(plot_annotation, bool) and plot_annotation:
 		add_annotations(ax, x, y, z, annotationsize, tail_threshold)
@@ -233,5 +231,8 @@ def plot_kmap(data, data_raw=True, data_label = "", filename = "", plot_annotati
 
 	# Save file
 	plt.tight_layout()
-	plt.savefig(filename+'.pdf')
-	plt.savefig(filename+'.png')
+	if '.' in filename:
+		plt.savefig(filename)
+	else:
+		plt.savefig(filename+'.pdf')
+		plt.savefig(filename+'.png')
