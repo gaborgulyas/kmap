@@ -85,7 +85,7 @@ def add_annotations(ax, x, y, z, textsize, tail_threshold = None):
 	            color="k"
 	        )
 
-def plot_kmap(data, data_label = "", filename = "", plot_annotation = True, annotation_params=None, title = None, title_loc = "center", titlelabelsize=26, axlabelsize=22, textsize=16, annotationsize=13, tail_threshold=None, plot_legend = True, plot_scatter=True, scatter_ms = None, scatter_c='k', scatter_a=.5, scatter_m=r'.', plot_heatmap=True, colormap=plt.cm.Greys, plot_contour=False, plot_contour_lbls=False):
+def plot_kmap(data, data_raw=True, data_label = "", filename = "", plot_annotation = True, annotation_params=None, title = None, title_loc = "center", titlelabelsize=26, axlabelsize=22, textsize=16, annotationsize=13, tail_threshold=None, plot_legend = True, plot_scatter=True, scatter_ms = None, scatter_c='k', scatter_a=.5, scatter_m=r'.', plot_heatmap=True, colormap=plt.cm.Greys, plot_contour=False, plot_contour_lbls=False):
 	# Plot basic setup
 	matplotlib.rcParams.update({'font.size': textsize})
 	fig = plt.figure(figsize=(8, 8))
@@ -97,30 +97,42 @@ def plot_kmap(data, data_label = "", filename = "", plot_annotation = True, anno
 	plt.tick_params(axis='both', which='major', labelsize=axlabelsize)
 
 	# Process data
-	xy = Counter(Counter(data).values())
-	x = [x_ for x_ in sorted(xy.keys())]
-	y = [xy[ass] for ass in sorted(xy.keys())]
-	z = [ass*xy[ass] for ass in sorted(xy.keys())]
-	w = [float(ass*xy[ass])/len(data) for ass in sorted(xy.keys())]
+	if data_raw:
+		# Assumed that anonymity sets partition the dataset
+		data_length = len(data)
+		xy = Counter(Counter(data).values())
+		x = [x_ for x_ in sorted(xy.keys())]
+		y = [xy[ass] for ass in sorted(xy.keys())]
+		z = [ass*xy[ass] for ass in sorted(xy.keys())]
+		w = [float(ass*xy[ass])/data_length for ass in sorted(xy.keys())]
+	else:
+		# Not assumed that anonymity sets partition the dataset (e.g., they could be overlapping)
+		data_length = data[0]
+		xy = data[1]
+		x = [x_ for x_ in sorted(xy.keys())]
+		y = [xy[ass] for ass in sorted(xy.keys())]
+		z = [xy[ass] for ass in sorted(xy.keys())]
+		w = [float(xy[ass])/data_length for ass in sorted(xy.keys())]
 
-	# Emphasize heavy spots for the contour (but visualize only one for each)
-	x_ = []
-	y_ = []
-	z_ = []
-	for ix in range(len(z)):
-		for i in range((z[ix])):
-			if i == 0:
-				if scatter_ms == None:
-					z_.append(float(10000*z[ix])/len(data))
-				else:
-					z_.append(scatter_ms)
-			else:
-				z_.append(0.0)
-
-			x_.append(math.log(x[ix], 10))
-			y_.append(math.log(y[ix], 10))
 
 	if plot_heatmap or plot_contour:
+		# Emphasize heavy spots for the contour (but visualize only one for each)
+		x_ = []
+		y_ = []
+		z_ = []
+		for ix in range(len(z)):
+			for i in range((z[ix])):
+				if i == 0:
+					if scatter_ms == None:
+						z_.append(float(10000*z[ix])/data_length)
+					else:
+						z_.append(scatter_ms)
+				else:
+					z_.append(0.0)
+
+				x_.append(math.log(x[ix], 10))
+				y_.append(math.log(y[ix], 10))
+
 		# Heatmap calculation
 		X, Y = np.mgrid[-0.5:5:100j, -0.5:5:100j]
 		positions = np.vstack([X.ravel(), Y.ravel()])
@@ -129,19 +141,19 @@ def plot_kmap(data, data_label = "", filename = "", plot_annotation = True, anno
 		Z = np.reshape(kernel(positions).T, X.shape)
 		Z = np.sqrt(np.sqrt(Z)) # Strengthen low-weighted regions
 
-
-	if plot_heatmap:
 		# Plot heatmap
-		plt.contourf(X, Y, Z, 10, cmap=colormap, alpha=.5)
+		if plot_heatmap:
+			plt.contourf(X, Y, Z, 10, cmap=colormap, alpha=.5)
 
-	if plot_contour:
-		cs = plt.contour(X, Y, Z, 10, cmap=colormap, alpha=.5)
-		if plot_contour_lbls:
-			plt.clabel(cs, inline=1, fontsize=int(textsize/2))
+		# Plot contour
+		if plot_contour:
+			cs = plt.contour(X, Y, Z, 10, cmap=colormap, alpha=.5)
+			if plot_contour_lbls:
+				plt.clabel(cs, inline=1, fontsize=int(textsize/2))
 
 	if plot_scatter:
 		# Scatter points
-		plt.scatter(x_, y_, s=z_, alpha=scatter_a, c=scatter_c, marker=scatter_m, label = data_label) # alpha=.5,
+		plt.scatter([math.log(_, 10) for _ in x], [math.log(_, 10) for _ in y], s=[10**4*_ for _ in w], alpha=scatter_a, c=scatter_c, marker=scatter_m, label = data_label) # alpha=.5,
 
 		if plot_legend:
 			# Legend
@@ -183,7 +195,25 @@ def plot_kmap(data, data_label = "", filename = "", plot_annotation = True, anno
 
 			pts = [[math.log(pt[0], 10), math.log(pt[1], 10)] for pt in grp]
 			c, r = selectpoints(ax, pts, radius=annotation_radius, ec=annotation_linestyle['color'], lw=annotation_linestyle['width'], ls=annotation_linestyle['style'], fill=False)
-			plt.text(c[0]+r*annotation_distance, c[1], "%.2f %%" % (weights[gix] * 100))
+
+			annotation_shift_vector = [r*annotation_distance, 0.0]
+			if isinstance(annotation_params, dict) and 'location' in annotation_params:
+				if isinstance(annotation_params['location'], list):
+					if annotation_params['location'][gix] == 'left':
+						annotation_shift_vector = [-r*annotation_distance, 0.0]
+					elif annotation_params['location'][gix] == 'top':
+						annotation_shift_vector = [0.0, r*annotation_distance]
+					elif annotation_params['location'][gix] == 'bottom':
+						annotation_shift_vector = [0.0, -r*annotation_distance]
+				else:
+					if annotation_params['location'] == 'left':
+						annotation_shift_vector = [-r*annotation_distance, 0.0]
+					elif annotation_params['location'] == 'top':
+						annotation_shift_vector = [0.0, r*annotation_distance]
+					elif annotation_params['location'] == 'bottom':
+						annotation_shift_vector = [0.0, -r*annotation_distance]
+
+			plt.text(c[0]+annotation_shift_vector[0], c[1]+annotation_shift_vector[1], "%.2f %%" % (weights[gix] * 100))
 
 
 	# Add annotations for minimum and maximum anonymity sets
