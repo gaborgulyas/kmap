@@ -85,7 +85,7 @@ def add_annotations(ax, x, y, z, textsize, tail_threshold = None):
 	            color="k"
 	        )
 
-def plot_kmap(data, data_raw=True, data_label = "", filename = "", plot_annotation = True, annotation_params=None, title = None, title_loc = "center", titlelabelsize=26, axlabelsize=22, textsize=16, annotationsize=13, tail_threshold=None, plot_legend = True, plot_scatter=True, scatter_ms = None, scatter_c='k', scatter_a=.5, scatter_m=r'.', plot_heatmap=True, colormap=plt.cm.Greys, plot_contour=False, plot_contour_lbls=False):
+def plot_kmap(data, data_raw=True, as_partitions=None, data_label = "", filename = "", plot_annotation = True, annotation_params=None, title = None, title_loc = "center", titlelabelsize=26, axlabelsize=22, textsize=16, annotationsize=13, tail_threshold=None, plot_legend = True, plot_scatter=True, scatter_ms = None, scatter_c='k', scatter_a=.5, scatter_m=r'.', plot_heatmap=True, colormap=plt.cm.Greys, plot_contour=False, plot_contour_lbls=False):
 	# Plot basic setup
 	matplotlib.rcParams.update({'font.size': textsize})
 	fig = plt.figure(figsize=(8, 8))
@@ -103,16 +103,24 @@ def plot_kmap(data, data_raw=True, data_label = "", filename = "", plot_annotati
 		xy = Counter(Counter(data).values())
 		x = [x_ for x_ in sorted(xy.keys())]
 		y = [xy[ass] for ass in sorted(xy.keys())]
-		z = [ass*xy[ass] for ass in sorted(xy.keys())]
-		w = [float(ass*xy[ass])/data_length for ass in sorted(xy.keys())]
+		if as_partitions == None or as_partitions == True:
+			z = [ass*xy[ass] for ass in sorted(xy.keys())]
+			w = [float(ass*xy[ass])/data_length for ass in sorted(xy.keys())]
+		else:
+			z = [xy[ass] for ass in sorted(xy.keys())]
+			w = [float(xy[ass])/data_length for ass in sorted(xy.keys())]
 	else:
 		# Not assumed that anonymity sets partition the dataset (e.g., they could be overlapping)
 		data_length = data[0]
 		xy = data[1]
 		x = [x_ for x_ in sorted(xy.keys())]
 		y = [xy[ass] for ass in sorted(xy.keys())]
-		z = [xy[ass] for ass in sorted(xy.keys())]
-		w = [float(ass*xy[ass])/data_length for ass in sorted(xy.keys())]
+		if as_partitions == None or as_partitions == False:
+			z = [xy[ass] for ass in sorted(xy.keys())]
+			w = [float(xy[ass])/data_length for ass in sorted(xy.keys())]
+		else:
+			z = [ass*xy[ass] for ass in sorted(xy.keys())]
+			w = [float(ass*xy[ass])/data_length for ass in sorted(xy.keys())]
 
 	if plot_heatmap or plot_contour:
 		# Emphasize heavy spots for the contour (but visualize only one for each)
