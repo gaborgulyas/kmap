@@ -70,9 +70,39 @@ plot_kmap(data=data)
 
 # Second type of use: anonymity sets created by something else, like fingerprints
 data = {1: 9994, 2: 6, ...}
-plot_kmap(data=[sum(data.values()), data])
+plot_kmap(data=[sum(data.values()), data], data_raw=False)
 ```
 
+The optional parameters are the following:
+
+```python
+plot_kmap(data, 
+	data_raw=True,				# Whether the data is a list of attributes or already a dict
+	as_partitions=None,			# If the anonymity sets partitioning the data or not
+	data_label = "",
+	filename = "",
+	plot_annotation = True,
+	annotation_params=None,
+	title = None,
+	title_loc = "center",
+	titlelabelsize=26,
+	axlabelsize=22,
+	textsize=16,
+	annotationsize=13,
+	tail_threshold=None,
+	plot_legend = True,
+	plot_scatter=True,
+	scatter_ms = None,
+	scatter_c='k',
+	scatter_a=.5,
+	scatter_m=r'.',
+	# Whether add a heatmap to the background
+	plot_heatmap=True,
+	colormap=plt.cm.Greys,
+	
+	plot_contour=False,
+	plot_contour_lbls=False)
+```
 
 ## Are there any instances where `kmaps` was used?
 
