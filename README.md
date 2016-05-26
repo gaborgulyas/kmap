@@ -57,9 +57,21 @@ After providing this input, `kmaps` will output something like this:
 
 ![alt text](https://raw.githubusercontent.com/gaborgulyas/kmap/master/images/individual_anonsetsizes.png "Anonymity set sizes by fingerprints")
 
-
 ## Parameters
 
+Basically there is a single mandatory parameter and there are a lot of optional ones. By default this is how `kmaps` should be called:
+
+```python
+from kmap import plot_kmap
+
+# First type of use: anonymity sets partition data
+data = [1, 0, 0, 1, 2, 3, ...]
+plot_kmap(data=data)
+
+# Second type of use: anonymity sets created by something else, like fingerprints
+data = {1: 9994, 2: 6, ...}
+plot_kmap(data=[sum(data.values()), data])
+```
 
 
 ## Are there any instances where `kmaps` was used?
