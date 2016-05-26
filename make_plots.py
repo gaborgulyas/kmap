@@ -38,9 +38,9 @@ data1 = build_fingerprint_dataset(records, attr_ixs=[0, 9, 13])
 plot_kmap(data=data1, data_label="Age, sex, native-country", filename="kmap_attrnum=3", plot_annotation=[[1, 3], [100, 1000]], annotation_params=dict(radius=.1, linestyle=dict(color='r', width=2, style=':')), colormap=plt.cm.viridis)
 
 # Dataset-2: age, sex, native-country, race, relationship, workclass
-# data2 = build_fingerprint_dataset(records, attr_ixs=[0, 9, 13, 8, 7, 1])
-# plot_kmap(data=data2, data_label="+ race, relationship, workclass", filename="kmap_attrnum=6", plot_annotation=[[1, 3], [100, 1000]], colormap=plt.cm.viridis)
+data2 = build_fingerprint_dataset(records, attr_ixs=[0, 9, 13, 8, 7, 1])
+plot_kmap(data=data2, data_label="+ race, relationship, workclass", filename="kmap_attrnum=6", plot_annotation=[[1, 3], [100, 1000]], colormap=plt.cm.viridis)
 
 # Dataset-3: age, sex, native-country, race, relationship, workclass, education, occupation, capital-gain
-# data3 = build_fingerprint_dataset(records, attr_ixs=[0, 9, 13, 8, 7, 1, 3, 6, 10])
-# plot_kmap(data=data3, data_label="+ education, occupation, capital-gain", filename="kmap_attrnum=9", plot_annotation=[[1, 3], [100, 1000]], annotation_params=dict(radius=.25), colormap=plt.cm.viridis)
+data3 = build_fingerprint_dataset(records, attr_ixs=[0, 9, 13, 8, 7, 1, 3, 6, 10])
+plot_kmap(data=data3, data_label="+ education, occupation, capital-gain", filename="kmap_attrnum=9", plot_annotation=[[1, 3], [100, 1000]], annotation_params=dict(radius=.25), colormap=plt.cm.viridis)
