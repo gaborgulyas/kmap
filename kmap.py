@@ -85,7 +85,7 @@ def add_annotations(ax, x, y, z, textsize, tail_threshold = None):
 	            color="k"
 	        )
 
-def plot_kmap(data, data_raw=True, as_partitions=None, data_label = "", filename = "", plot_annotation = True, annotation_params=None, title = None, title_loc = "center", titlelabelsize=26, axlabelsize=22, textsize=16, annotationsize=13, tail_threshold=None, plot_legend = True, plot_scatter=True, scatter_ms = None, scatter_c='k', scatter_a=.5, scatter_m=r'.', plot_heatmap=True, colormap=plt.cm.Greys, plot_contour=False, plot_contour_lbls=False):
+def plot_kmap(data, data_raw=True, as_partitions=None, data_label = "", filename = "", plot_annotation = True, annotation_params=None, title = None, title_loc = "center", titlelabelsize=26, axlabelsize=22, textsize=16, annotationsize=13, tail_threshold=None, plot_legend = True, plot_scatter=True, scatter_ms = None, scatter_c='k', scatter_a=.5, scatter_m=r'.', plot_heatmap=True, colormap=plt.cm.Greys, plot_contour=False, plot_contour_lbls=False, max_val_exp = 5):
 	# Plot basic setup
 	matplotlib.rcParams.update({'font.size': textsize})
 	fig = plt.figure(figsize=(8, 8))
@@ -227,7 +227,7 @@ def plot_kmap(data, data_raw=True, as_partitions=None, data_label = "", filename
 		add_annotations(ax, x, y, z, annotationsize, tail_threshold)
 
 	# Setup XY axes
-	maxval = 5
+	maxval = max_val_exp
 	plt.ylim(-0.5, maxval)
 	plt.xlim(-0.5, maxval)
 	ticks = range(maxval+1)

@@ -121,8 +121,11 @@ plot_kmap(data,
 								#	this should be a list, as [[1, 3], [10, 100]] to highlight
 								#	anonymity sets between size 1 and 3, 10 and 100
 	annotation_params = None,	# Annotation style parameters, e.g.:
-								#	dict(radius=.1, linestyle=dict(color='r', width=2, style=':'))
-	tail_threshold = None		# A line as annotation
+								#	dict(radius=[.2, .5], distance=[.6, .25], linestyle=dict(color='r', width=1, style='--'), location=['right', 'top'])
+	tail_threshold = None,		# A line as annotation
+	
+	# Misc
+	max_val_exp = 5				# Axes exponent (change it with _caution_)
 
 )
 ```
