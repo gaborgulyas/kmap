@@ -17,9 +17,11 @@ There are two use-cases of `kmaps` based on what we provide to it:
 1. if we provide attribute classes of a complete dataset,
 2. or if we provide anonymity sets that we have calculated.
 
-In the first case, `kmaps` calculates anonymity sets. In the second case, it is assumed, that the provided anonymity sets are not partitioning the dataset. For example, lets consider that we create [fingerprints](https://github.com/gaborgulyas/constrainted_fingerprinting) for each users: a fingerprint is a set of attributes selected differently per user that identify them the most. However, there might be similar users, where most attributes are the same, thus fingerprinting will result in anonymity sets instead of characterizing a single user.
+In the first case, `kmaps` calculates anonymity sets. In the second case, it is assumed, that the provided anonymity sets are not partitioning the dataset. For example, lets consider that we create a [fingerprinta](https://github.com/gaborgulyas/constrainted_fingerprinting) for each users: a fingerprint is a set of attributes selected differently per user that identify them the most. However, there might be similar users, where most attributes are the same, thus fingerprinting will result in anonymity sets instead of characterizing a single user.
 
 ## Examples
+
+In the examples below we use the [UCI Adult Data Set](https://archive.ics.uci.edu/ml/datasets/Adult) as a toy dataset.
 
 ### When attribute classes provided for the complete dataset 
 The input for `kmaps` is a list of attributes, preferebly in an indexed fashion (to be faster). Like assume that we consider type of residences as
@@ -42,10 +44,19 @@ This will result in something like this:
 :-------------------------:|:-------------------------:|:-------------------------: 
 ![alt text](https://raw.githubusercontent.com/gaborgulyas/kmap/master/images/kmap_attrnum%3D3.png "k=3") | ![alt text](https://raw.githubusercontent.com/gaborgulyas/kmap/master/images/kmap_attrnum%3D6.png "k=6") | ![alt text](https://raw.githubusercontent.com/gaborgulyas/kmap/master/images/kmap_attrnum%3D9.png "k=9")
 
-Here you can see that how anonymity sets change when we release 3, 6 or 9 attributes of entities in the dataset.
+Here you can see that how anonymity sets change when we release the Adult Dataset with 3, 6 or 9 attributes.
 
 ### When anonymity sets are provided
-...
+We can also calculate a [fingerprinta](https://github.com/gaborgulyas/constrainted_fingerprinting) for each user, then check what is the user or anonymity set selected by each fingerprint. In this case we have to provide a dictionary where keys are anonymity set sizes, values are the frequency of such sets, like
+
+```python
+data = {1: 9994, 2: 6, ...}
+```
+
+After providing this input, `kmaps` will output something like this:
+
+![alt text](https://raw.githubusercontent.com/gaborgulyas/kmap/master/images/individual_anonsetsizes.png "Anonymity set sizes by fingerprints")
+
 
 ## Parameters
 
