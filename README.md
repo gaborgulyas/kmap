@@ -40,7 +40,7 @@ This list of attributes can be provided to `kmaps`, which will calculate anonymi
 
 This will result in something like this:
 
-`k=3` | `k=6` | `k=9`
+6 attributes released | 6 attributes released | 9 attributes released
 :-------------------------:|:-------------------------:|:-------------------------: 
 ![alt text](https://raw.githubusercontent.com/gaborgulyas/kmap/master/images/kmap_attrnum%3D3.png "k=3") | ![alt text](https://raw.githubusercontent.com/gaborgulyas/kmap/master/images/kmap_attrnum%3D6.png "k=6") | ![alt text](https://raw.githubusercontent.com/gaborgulyas/kmap/master/images/kmap_attrnum%3D9.png "k=9")
 
