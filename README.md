@@ -27,7 +27,13 @@ In the examples below we use the [UCI Adult Data Set](https://archive.ics.uci.ed
 The input for `kmaps` is a list of attributes, preferebly in an indexed fashion (to be faster). Like assume that we consider type of residences as
 
 ```python
-attribute_dictionary = {("residence=urban", "age=0-21"): 0, ("residence=urban", "age=22-49"): 1, ("residence=urban", "age=50+"): 2, ("residence=rural", "age=0-21"): 3, ...}
+attribute_dictionary = {
+	("residence=urban", "age=0-21"): 0,
+	("residence=urban", "age=22-49"): 1,
+	("residence=urban", "age=50+"): 2,
+	("residence=rural", "age=0-21"): 3,
+	...
+}
 ```
 
 so we would have a list characterizing our dataset as
