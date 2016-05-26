@@ -56,7 +56,7 @@ Here you can see that how anonymity sets change when we release the Adult Datase
 We can also calculate a [fingerprints](https://github.com/gaborgulyas/constrainted_fingerprinting) for each user, then check what is the user or anonymity set selected by each fingerprint. In this case we have to provide a dictionary where keys are anonymity set sizes, values are the frequency of such sets, like
 
 ```python
-data = {1: 9994, 2: 6, ...}
+data = {1: 32514, 2: 44, 3: 3, ...}
 ```
 
 After providing this input, `kmaps` will output something like this:
@@ -76,7 +76,7 @@ data = [1, 0, 0, 1, 2, 3, ...]
 plot_kmap(data=data)
 
 # Second type of use: anonymity sets created by something else, like fingerprints
-data = {1: 9994, 2: 6, ...}
+data = {1: 32514, 2: 44, 3: 3, ...}
 plot_kmap(data=[sum(data.values()), data], data_raw=False)
 ```
 
