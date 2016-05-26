@@ -81,14 +81,14 @@ plot_kmap(data,
 	data_raw=True,				# Whether the data is a list of attributes or already a dict
 	as_partitions=None,			# If the anonymity sets partitioning the data or not
 	filename = "",				# Output file path. If only filename provided with
-									#	no extension is provided
+								#	no extension is provided
 
 	# Legend
 	plot_legend = True,			# Add a legend (or not)
-	data_label = "",				# Label of the data points (to scatter plot)
+	data_label = "",			# Label of the data points (to scatter plot)
 	
 	# Plot titles and other properties
-	title = None,					# Plot title
+	title = None,				# Plot title
 	title_loc = "center",		# Plot title location
 	titlelabelsize = 26,		# Plot title text size
 	axlabelsize = 22,			# Axes label sizes
@@ -99,7 +99,7 @@ plot_kmap(data,
 	plot_scatter = True,		# On/off
 	scatter_ms = None,			# Marker size (use None for dynamic sizing proportionally to anonymity set size)
 	scatter_c = 'k',				# Scatter marker color
-	scatter_a = .5,				# Scatter marker alpha
+	scatter_a = .5,			# Scatter marker alpha
 	scatter_m = r'.',			# Scatter marker shape
 	
 	# Whether add a heatmap to the background
@@ -112,10 +112,10 @@ plot_kmap(data,
 	
 	# Plot annotation parameters
 	plot_annotation = True,		# Highlight some anonymity sets and show their size;
-									#	this should be a list, as [[1, 3], [10, 100]] to highlight
-									#	anonymity sets between size 1 and 3, 10 and 100
+								#	this should be a list, as [[1, 3], [10, 100]] to highlight
+								#	anonymity sets between size 1 and 3, 10 and 100
 	annotation_params = None,	# Annotation style parameters, e.g.:
-									#	dict(radius=.1, linestyle=dict(color='r', width=2, style=':'))
+								#	dict(radius=.1, linestyle=dict(color='r', width=2, style=':'))
 	tail_threshold = None		# A line as annotation
 
 )
