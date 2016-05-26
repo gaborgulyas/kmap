@@ -63,6 +63,7 @@ Basically there is a single mandatory parameter and there are a lot of optional 
 
 ```python
 from kmap import plot_kmap
+# Note: you should also have matplotlib installed
 
 # First type of use: anonymity sets partition data
 data = [1, 0, 0, 1, 2, 3, ...]
@@ -79,29 +80,45 @@ The optional parameters are the following:
 plot_kmap(data, 
 	data_raw=True,				# Whether the data is a list of attributes or already a dict
 	as_partitions=None,			# If the anonymity sets partitioning the data or not
-	data_label = "",
-	filename = "",
-	plot_annotation = True,
-	annotation_params=None,
-	title = None,
-	title_loc = "center",
-	titlelabelsize=26,
-	axlabelsize=22,
-	textsize=16,
-	annotationsize=13,
-	tail_threshold=None,
-	plot_legend = True,
-	plot_scatter=True,
-	scatter_ms = None,
-	scatter_c='k',
-	scatter_a=.5,
-	scatter_m=r'.',
-	# Whether add a heatmap to the background
-	plot_heatmap=True,
-	colormap=plt.cm.Greys,
+	filename = "",				# Output file path. If only filename provided with
+									#	no extension is provided
+
+	# Legend
+	plot_legend = True,			# Add a legend (or not)
+	data_label = "",				# Label of the data points (to scatter plot)
 	
-	plot_contour=False,
-	plot_contour_lbls=False)
+	# Plot titles and other properties
+	title = None,					# Plot title
+	title_loc = "center",		# Plot title location
+	titlelabelsize = 26,		# Plot title text size
+	axlabelsize = 22,			# Axes label sizes
+	textsize = 16,				# General text size, e.g., used in legend, contour
+	annotationsize = 13,		# Annotation text size
+
+	# Scatter plot properties
+	plot_scatter = True,		# On/off
+	scatter_ms = None,			# Marker size (use None for dynamic sizing proportionally to anonymity set size)
+	scatter_c = 'k',				# Scatter marker color
+	scatter_a = .5,				# Scatter marker alpha
+	scatter_m = r'.',			# Scatter marker shape
+	
+	# Whether add a heatmap to the background
+	plot_heatmap=True,			# On/off
+	colormap=plt.cm.Greys,		# Colormap
+
+	# Contour (alone or with heathmap)
+	plot_contour=False,			# On/off
+	plot_contour_lbls=False	,	# With labels (values on contour lines)
+	
+	# Plot annotation parameters
+	plot_annotation = True,		# Highlight some anonymity sets and show their size;
+									#	this should be a list, as [[1, 3], [10, 100]] to highlight
+									#	anonymity sets between size 1 and 3, 10 and 100
+	annotation_params = None,	# Annotation style parameters, e.g.:
+									#	dict(radius=.1, linestyle=dict(color='r', width=2, style=':'))
+	tail_threshold = None		# A line as annotation
+
+)
 ```
 
 ## Are there any instances where `kmaps` was used?
