@@ -8,23 +8,23 @@ The idea originates from the question how to visualize what is happening with at
 
 While this is a nice figure, it is quite hard to understand it quantitatively, and it can be even more complicated if you want to compare different datasets by using this visualization method. However, it would be nice to understand the state of uniqueness in datasets, especially if you consider different attributes in each case, apply anonymization or other countermeasures to decrease uniqueness.
 
-This is what `kmaps` was created for.
+This is what `kmap` was created for.
 
-## Use-cases for `kmaps`
+## Use-cases for `kmap`
 
-There are two use-cases of `kmaps` based on what we provide to it:
+There are two use-cases of `kmap` based on what we provide to it:
 
 1. if we provide attribute classes of a complete dataset,
 2. or if we provide anonymity sets that we have calculated.
 
-In the first case, `kmaps` calculates anonymity sets. In the second case, it is assumed, that the provided anonymity sets are not partitioning the dataset. For example, lets consider that we create a [fingerprints](https://github.com/gaborgulyas/constrainted_fingerprinting) for each users: a fingerprint is a set of attributes selected differently per user that identify them the most. However, there might be similar users, where most attributes are the same, thus fingerprinting will result in anonymity sets instead of characterizing a single user.
+In the first case, `kmap` calculates anonymity sets. In the second case, it is assumed, that the provided anonymity sets are not partitioning the dataset. For example, lets consider that we create a [fingerprints](https://github.com/gaborgulyas/constrainted_fingerprinting) for each users: a fingerprint is a set of attributes selected differently per user that identify them the most. However, there might be similar users, where most attributes are the same, thus fingerprinting will result in anonymity sets instead of characterizing a single user.
 
 ## Examples
 
 In the examples below we use the [UCI Adult Data Set](https://archive.ics.uci.edu/ml/datasets/Adult) as a toy dataset.
 
 ### When attribute classes provided for the complete dataset 
-The input for `kmaps` is a list of attributes, preferebly in an indexed fashion (to be faster). Like assume that we consider type of residences as
+The input for `kmap` is a list of attributes, preferebly in an indexed fashion (to be faster). Like assume that we consider type of residences as
 
 ```python
 attribute_dictionary = {
@@ -42,7 +42,7 @@ so we would have a list characterizing our dataset as
 data = [1, 0, 0, 1, 2, 3, ...]
 ```
 
-This list of attributes can be provided to `kmaps`, which will calculate anonymity sets and make the plot based on that.
+This list of attributes can be provided to `kmap`, which will calculate anonymity sets and make the plot based on that.
 
 This will result in something like this:
 
@@ -59,13 +59,13 @@ We can also calculate a [fingerprints](https://github.com/gaborgulyas/constraint
 data = {1: 32514, 2: 44, 3: 3, ...}
 ```
 
-After providing this input, `kmaps` will output something like this:
+After providing this input, `kmap` will output something like this:
 
 ![alt text](https://raw.githubusercontent.com/gaborgulyas/kmap/master/images/individual_anonsetsizes.png "Anonymity set sizes by fingerprints")
 
 ## Parameters
 
-Basically there is a single mandatory parameter and there are a lot of optional ones. By default this is how `kmaps` should be called:
+Basically there is a single mandatory parameter and there are a lot of optional ones. By default this is how `kmap` should be called:
 
 ```python
 from kmap import plot_kmap
@@ -130,9 +130,9 @@ plot_kmap(data,
 )
 ```
 
-## Are there any instances where `kmaps` was used?
+## Are there any instances where `kmap` was used?
 
-Please [inform me](https://gulyas.info), if you use `kmaps`, or know further uses than listed here. Thanks.
+Please [inform me](https://gulyas.info), if you use `kmap`, or know further uses than listed here. Thanks.
 
 1. `Gabor Gyorgy Gulyas, Gergely Acs, Claude Castelluccia: Near-Optimal Fingerprinting with Constraints. PET Symposium 2016.`
 
