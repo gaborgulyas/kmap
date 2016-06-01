@@ -86,6 +86,8 @@ The optional parameters are the following:
 plot_kmap(data, 
 	data_raw=True,				# Whether the data is a list of attributes or already a dict
 	as_partitions=None,			# If the anonymity sets partitioning the data or not
+								# 	(leaving it None will lead to default behavior
+								#	regarding if it has to work with raw data or not)
 	filename = "",				# Output file path. If only filename provided with
 								#	no extension is provided
 
