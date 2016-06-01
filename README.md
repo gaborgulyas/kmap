@@ -134,7 +134,7 @@ plot_kmap(data,
 
 ## Are there any instances where `kmap` was used?
 
-Please [inform me](https://gulyas.info), if you use `kmap`, or know further uses than listed here. Thanks.
+Please [let me know](https://gulyas.info), if you use `kmap`, or know further uses than listed here. Thanks.
 
 1. `Gabor Gyorgy Gulyas, Gergely Acs, Claude Castelluccia: Near-Optimal Fingerprinting with Constraints. PET Symposium 2016.`
 
