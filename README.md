@@ -132,10 +132,19 @@ plot_kmap(data,
 )
 ```
 
+## Attribution
+
+Please cite the first paper where `kmap` was used:
+`Gabor Gyorgy Gulyas, Gergely Acs, Claude Castelluccia: Near-Optimal Fingerprinting with Constraints. Proceedings on Privacy Enhancing Technologies. Volume 2016, Issue 4, Pages 470–487, ISSN (Online) 2299-0984, DOI: 10.1515/popets-2016-0051, July 2016`
+
+Available online [here](http://www.degruyter.com/view/j/popets.2016.2016.issue-4/popets-2016-0051/popets-2016-0051.xml?format=INT).
+
+Thank you.
+
 ## Are there any instances where `kmap` was used?
 
-Please [let me know](https://gulyas.info), if you use `kmap`, or know further uses than listed here. Thanks.
+Please [let me know](https://gulyas.info), if you use `kmap`, or know further uses than listed here. It would be great to have feedback on this and see how use it! Thanks.
 
-1. `Gabor Gyorgy Gulyas, Gergely Acs, Claude Castelluccia: Near-Optimal Fingerprinting with Constraints. PET Symposium 2016.`
+1. `Gabor Gyorgy Gulyas, Gergely Acs, Claude Castelluccia: Near-Optimal Fingerprinting with Constraints. Proceedings on Privacy Enhancing Technologies. Volume 2016, Issue 4, Pages 470–487, ISSN (Online) 2299-0984, DOI: 10.1515/popets-2016-0051, July 2016`
 
   Repository: [https://github.com/gaborgulyas/constrainted_fingerprinting](https://github.com/gaborgulyas/constrainted_fingerprinting)
