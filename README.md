@@ -92,7 +92,7 @@ plot_kmap(data,
 								#	no extension is provided
 
 	# Legend
-	plot_legend = True,			# Add a legend (or not)
+	plot_legend = False,			# Add a legend (or not)
 	data_label = "",			# Label of the data points (to scatter plot)
 	
 	# Plot titles and other properties
