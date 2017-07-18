@@ -131,6 +131,16 @@ plot_kmap(data,
 
 )
 ```
+## Frequently Asked Questions
+
+1. I got the error of `ImportError: No module named Tkinter`.
+
+Right after the import of `matplotlib` add the following line (this will change the backend `matplotlib` tries to use), e.g.:
+```
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+```
 
 ## Attribution
 
