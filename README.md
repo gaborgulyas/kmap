@@ -86,10 +86,10 @@ The optional parameters are the following:
 plot_kmap(data, 
 	data_raw=True,				# Whether the data is a list of attributes or already a dict
 	as_partitions=None,			# If the anonymity sets partitioning the data or not
-								# 	(leaving it None will lead to default behavior
-								#	regarding if it has to work with raw data or not)
+						# 	(leaving it None will lead to default behavior
+						#	regarding if it has to work with raw data or not)
 	filename = "",				# Output file path. If only filename provided with
-								#	no extension is provided
+						#	no extension is provided
 
 	# Legend
 	plot_legend = False,			# Add a legend (or not)
@@ -97,22 +97,22 @@ plot_kmap(data,
 	
 	# Plot titles and other properties
 	title = None,				# Plot title
-	title_loc = "center",		# Plot title location
-	titlelabelsize = 26,		# Plot title text size
+	title_loc = "center",			# Plot title location
+	titlelabelsize = 26,			# Plot title text size
 	axlabelsize = 22,			# Axes label sizes
 	textsize = 16,				# General text size, e.g., used in legend, contour
-	annotationsize = 13,		# Annotation text size
+	annotationsize = 13,			# Annotation text size
 
 	# Scatter plot properties
-	plot_scatter = True,		# On/off
+	plot_scatter = True,			# On/off
 	scatter_ms = None,			# Marker size (use None for dynamic sizing proportionally to anonymity set size)
-	scatter_c = 'k',				# Scatter marker color
-	scatter_a = .5,			# Scatter marker alpha
+	scatter_c = 'k',			# Scatter marker color
+	scatter_a = .5,				# Scatter marker alpha
 	scatter_m = r'.',			# Scatter marker shape
 	
 	# Whether add a heatmap to the background
 	plot_heatmap=True,			# On/off
-	colormap=plt.cm.Greys,		# Colormap
+	colormap=plt.cm.Greys,			# Colormap
 
 	# Contour (alone or with heathmap)
 	plot_contour=False,			# On/off
