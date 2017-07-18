@@ -116,15 +116,15 @@ plot_kmap(data,
 
 	# Contour (alone or with heathmap)
 	plot_contour=False,			# On/off
-	plot_contour_lbls=False	,	# With labels (values on contour lines)
+	plot_contour_lbls=False	,		# With labels (values on contour lines)
 	
 	# Plot annotation parameters
-	plot_annotation = True,		# Highlight some anonymity sets and show their size;
-								#	this should be a list, as [[1, 3], [10, 100]] to highlight
-								#	anonymity sets between size 1 and 3, 10 and 100
-	annotation_params = None,	# Annotation style parameters, e.g.:
-								#	dict(radius=[.2, .5], distance=[.6, .25], linestyle=dict(color='r', width=1, style='--'), location=['right', 'top'])
-	tail_threshold = None,		# A line as annotation
+	plot_annotation = True,			# Highlight some anonymity sets and show their size;
+						#	this should be a list, as [[1, 3], [10, 100]] to highlight
+						#	anonymity sets between size 1 and 3, 10 and 100
+	annotation_params = None,		# Annotation style parameters, e.g.:
+						#	dict(radius=[.2, .5], distance=[.6, .25], linestyle=dict(color='r', width=1, style='--'), location=['right', 'top'])
+	tail_threshold = None,			# A line as annotation
 	
 	# Misc
 	max_val_exp = 5				# Axes exponent (change it with _caution_)
